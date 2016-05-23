@@ -1,6 +1,6 @@
 # RPM包的制作
 
-##关于RPM
+##前言
 
 按照其软件包的格式来划分，常见的Linux发行版主要可以分为两类，**类ReadHat系列**和**类Debian系列**，这两类系统分别提供了自己的软件包管理系统和相应的工具。  
 
@@ -516,6 +516,9 @@ fattr (-,root,root) 指定包装文件的属性，分别是(mode,owner,group)，
 
 * 手动安装 rpm 包  
 `rpm-ivh xxxxx.rpm`
+ 参数：  
+ --force 即使覆盖其他包的文件也没强迫安装  
+ --nodeps 即使依赖包没安装，也被强制安装  
 
 * 查看 rpm 包信息  
 `rpm-qpi xxxxx.rpm`
@@ -524,33 +527,39 @@ fattr (-,root,root) 指定包装文件的属性，分别是(mode,owner,group)，
 `rpm -qpR xxxxx.rpm`
 
 * 查看 rpm 包中包含那些文件  
-`rpm -qlp xxxxx.rpm`
-  可以加grep搜索  
+`rpm -qlp xxxxx.rpm`  
+ 可以加grep搜索  
 `rpm -qlp xxxxx.rpm|grep spec`
 
-*  使用工具rpm2cpio提取文件： 
+* 使用工具rpm2cpio提取文件： 
 `rpm2cpio xxxxx.rpm |cpio -ivd xxx.jpg`
 
-*  用rpm2cpio将rpm文件转换成cpio文件
+* 用rpm2cpio将rpm文件转换成cpio文件
 `rpm2cpio xxxxxx.rpm >xxxxx.cpio`
 
-*  用cpio解压cpio文件   
+* 用cpio解压cpio文件   
 `cpio -i  --make-directories`
 
-*  提取所有文件：  
+* 提取所有文件：  
 `rpm2cpio xxx.rpm | cpio -vi`   
 `rpm2cpio xxx.rpm | cpio -idmv`   
 `rpm2cpio xxx.rpm | cpio --extract --make-directories`  
 
-*  cpio 参数说明:
-   **i** 和 **extract** 表示提取文件   
-   **v** 表示指示执行进程   
-   **d** 和 **make-directory** 表示根据包中文件原来的路径建立目录 
-   **m** 表示保持文件的更新时间
+* cpio 参数说明:  
+	**i** 和 **extract** 表示提取文件   
+	**v** 表示指示执行进程    
+	**d** 和 **make-directory** 表示根据包中文件原来的路径建立目录 
+	**m** 表示保持文件的更新时间
 
-*  查看rpm包里的pre和post install脚本：
+* 查看rpm包里的pre和post install脚本：
 `rpm -qp --scripts xxxxx.rpm`  
 
-*   查看安装的过程中，代码的执行过程：  
+* 查看安装的过程中，代码的执行过程：  
 `rpm -ih -vv xxxxx.rpm`  
 
+* 强制卸载rpm包  
+`rpm -e --nodeps xxxxx`
+ 没有rpm后缀
+
+* 查询一个rpm包是否被安装
+`rpm - q xxxxxx`
