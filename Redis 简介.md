@@ -8,7 +8,7 @@ Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络
 Redis官方是不支持windows的，但是 Microsoft Open Tech group 在 GitHub上开发了一个Win64的版本<br>
 [Redis for windows](https://github.com/MSOpenTech/redis)
 
-## Redis配置  说明  
+## Redis配置  
 Redis 的配置文件位于 Redis 安装目录下，文件名为 redis.conf  
 也可以通过 CONFIG 命令查看或设置配置项，命令格式为
 redis 127.0.0.1:6379> CONFIG GET CONFIG_SETTING_NAME
@@ -158,7 +158,7 @@ redis.conf 配置项说明如下：
     include /path/to/local.conf
 
 
-### Redis 数据类型
+## Redis 数据类型
 
 Redis支持五种数据类型：  
 * string（字符串）  
